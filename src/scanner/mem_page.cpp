@@ -16,6 +16,7 @@ mem_page::mem_page(Process_Info *process_info, MEMORY_BASIC_INFORMATION *p_mem_i
     memcpy(&m_mem_info, p_mem_info, sizeof(MEMORY_BASIC_INFORMATION));
 }
 
+#if 0
 mem_page::mem_page(PVOID BaseAddress, std::string file_path)
 {
   std::ifstream file("myfile", std::ios::binary | std::ios::ate);
@@ -32,16 +33,8 @@ mem_page::mem_page(PVOID BaseAddress, std::string file_path)
   if (file.read(m_buffer, size))
   {
   }
-
-  PVOID  AllocationBase;
-  DWORD  AllocationProtect;
-  WORD   PartitionId;
-  SIZE_T RegionSize;
-  DWORD  State;
-  DWORD  Protect;
-  DWORD  Type;
-
 }
+#endif
 
 mem_page::~mem_page()
 {

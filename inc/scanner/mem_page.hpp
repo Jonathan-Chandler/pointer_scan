@@ -39,7 +39,9 @@ class mem_page
 
   public:
     mem_page(Process_Info *process_info, MEMORY_BASIC_INFORMATION *p_mem_info);
+#if 0
     mem_page(PVOID BaseAddress, std::string file_path);
+#endif
     ~mem_page();
 
     // update buffer
