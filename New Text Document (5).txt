@@ -1,0 +1,75 @@
+218D9910
+219F3570
+21B19760
+21D31E48
++1468
+21D332B0
+
+218D8894
+218D8B04
+
+218d8750
+
+wizard_container wizard_list[5] = (Sacrifice.exe+DAB08)
+wizard_container
+  wizard_addr = wizard_container[i]+144
+  wizard_addr = 144
+
+typedef struct wizard_t_
+{
+  float x; // +
+  float y;
+  float z;
+} wizard_t;
+
+class wizardClass
+{
+public:
+	char pad_0000[440]; //0x0000
+	float x; //0x01B8
+	float y; //0x01BC
+	float z; //0x01C0
+	char pad_01C4[512]; //0x01C4
+	class wizardClass *next; //0x03C4
+	char pad_03C8[1286]; //0x03C8
+	int16_t current health; //0x08CE
+	char pad_08D0[46]; //0x08D0
+	int16_t max health; //0x08FE
+	char pad_0900[544]; //0x0900
+	int16_t current mana; //0x0B20
+	char pad_0B22[2]; //0x0B22
+	int16_t max mana; //0x0B24
+	char pad_0B26[30]; //0x0B26
+	int16_t souls; //0x0B44
+	char pad_0B46[2290]; //0x0B46
+	char N00001093[20]; //0x1438
+	char pad_144C[3075]; //0x144C
+}; //Size: 0x204F
+static_assert(sizeof(wizardClass) == 0x204F);
+
+
+12290D98 - apshai
+24C083F0 - freya
+2572C020
+31B19108 - rigel
+31F247D0 - modi
+
+4C11CC
+2383814C
+23838008+270
+
+manalith
+  004C0304
+  <= 544 bytes
+
+Sacrifice.exe+DAB10
+  *(+148)
+  *(+1b8) == X
+  
+  23A10008+144
+
+004C0304 structure (mana fountain)
+
+
+004C0304 mana fountain
+004C0930 wizard

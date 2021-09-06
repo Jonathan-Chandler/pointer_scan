@@ -5,8 +5,10 @@
 #include <windows.h>
 #include "process_info.hpp"
 #include "process_mem.hpp"
+#include "mem_page.hpp"
 #include "utils.hpp"
 #include "search_nearby.hpp"
+#include "test_search_nearby.hpp"
 
 // #include "debug.h"
 // #include "memory_scan.h"
@@ -15,6 +17,7 @@
 
 int main(int argc, char *argv[])
 {
-  std::vector<mem_page*> m_mem_page_vec;
-  
+  std::cout << "test" << std::endl;
+
+  return 0;
 }

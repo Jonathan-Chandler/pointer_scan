@@ -10,6 +10,7 @@ class Process_Mem
   private:
     Process_Info* const m_proc_info;
     std::vector<mem_page*> m_mem_page_vec;
+    std::string m_page_dir;                   // dir to save/load memory pages
 
     void allocate_pages();
     void deallocate_pages();
@@ -26,7 +27,7 @@ class Process_Mem
 
   public:
     Process_Mem(Process_Info* const proc_info);
-    Process_Mem(Process_Info* const proc_info, mem_page *);
+    Process_Mem(std::string directory);
     ~Process_Mem();
 
     uint32_t get_base_addr();
@@ -39,6 +40,8 @@ class Process_Mem
 
     std::vector<uint32_t> search_pages(SIZE_T buff_len, uint8_t *buff);
     void print();
+    void save_pages();
+    void load_pages();
 };
 
 

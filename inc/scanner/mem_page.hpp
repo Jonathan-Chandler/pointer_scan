@@ -39,9 +39,7 @@ class mem_page
 
   public:
     mem_page(Process_Info *process_info, MEMORY_BASIC_INFORMATION *p_mem_info);
-#if 0
     mem_page(PVOID BaseAddress, std::string file_path);
-#endif
     ~mem_page();
 
     // update buffer
@@ -53,9 +51,12 @@ class mem_page
     uint8_t* get_buffer();
     uint8_t* get_buffer(uint32_t offset);
     std::vector<uint32_t> search_page(SIZE_T buff_len, uint8_t *buff);
-    void print();
+    //void print();
     void print(size_t printed_bytes);
     void print_info();
+    void save_page();
+    void load_page(std::string file_path);
+    void print();
 };
 
 

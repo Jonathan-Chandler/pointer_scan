@@ -67,7 +67,8 @@ void Process_Info::find_process_id()
   {
     while (Process32Next(snapshot, &entry) == TRUE)
     {
-      if (stricmp(entry.szExeFile, m_executable_name.c_str()) == 0)
+      //if (stricmp(entry.szExeFile, m_executable_name.c_str()) == 0)
+      if (m_executable_name.compare(entry.szExeFile) == 0)
       {  
         m_process_id = entry.th32ProcessID;
         if (this->debug_mode)
@@ -111,7 +112,8 @@ void Process_Info::find_process_base_addr()
     {
       do
       {
-        if (!_stricmp(modEntry.szModule, m_executable_name.c_str()))
+        //if (!_stricmp(modEntry.szModule, m_executable_name.c_str()))
+        if (!(m_executable_name.compare(modEntry.szModule)))
         {
           modBaseAddr = (uintptr_t)modEntry.modBaseAddr;
           

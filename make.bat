@@ -12,7 +12,8 @@ rem echo.
 rem call unit_test.exe
 rem if errorlevel 1 goto unit_test_failed
 rem echo.
-call scanner.exe "Sacrifice"
+rem call scanner.exe "Sacrifice"
+call scanner.exe
 goto exit_make
 
 :build_failed

@@ -1,7 +1,9 @@
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <cassert>
+#include <fstream>      // std::ifstream
 
 #include "process_info.hpp"
 #include "mem_page.hpp"
@@ -16,10 +18,10 @@ mem_page::mem_page(Process_Info *process_info, MEMORY_BASIC_INFORMATION *p_mem_i
     memcpy(&m_mem_info, p_mem_info, sizeof(MEMORY_BASIC_INFORMATION));
 }
 
-#if 0
 mem_page::mem_page(PVOID BaseAddress, std::string file_path)
+  : m_proc_info(nullptr)
 {
-  std::ifstream file("myfile", std::ios::binary | std::ios::ate);
+  std::ifstream file(file_path.c_str(), std::ios::binary | std::ios::ate);
   std::streamsize size = file.tellg();
   file.seekg(0, std::ios::beg);
 
@@ -29,12 +31,11 @@ mem_page::mem_page(PVOID BaseAddress, std::string file_path)
   //std::vector<char> buffer(size);
   //if (file.read(buffer.data(), size))
 
-  m_buffer = new uint8_t[p_mem_info->RegionSize]())
-  if (file.read(m_buffer, size))
+  m_buffer = std::unique_ptr<uint8_t>(new uint8_t[m_mem_info.RegionSize]());
+  if (file.read((char*)m_buffer.get(), size))
   {
   }
 }
-#endif
 
 mem_page::~mem_page()
 {
@@ -126,25 +127,25 @@ uint32_t mem_page::get_len()
   return m_mem_info.RegionSize;
 }
 
-void mem_page::print()
-{
-  // print the entire page
-  return print(get_len());
-}
+//void mem_page::print()
+//{
+//  // print the entire page
+//  return print(get_len());
+//}
 
-void mem_page::print(size_t printed_bytes)
-{
-  for (size_t i = 0; i < printed_bytes; i += 0x10)
-  {
-    // print 16 bytes on each line
-    for (size_t x = 0; i+x < m_mem_info.RegionSize && x < 0x10; x++) 
-    {
-      std::cout << m_buffer.get()[i+x] << " ";
-    }
-
-    std::cout << std::endl;
-  }
-}
+//void mem_page::print(size_t printed_bytes)
+//{
+//  for (size_t i = 0; i < printed_bytes; i += 0x10)
+//  {
+//    // print 16 bytes on each line
+//    for (size_t x = 0; i+x < m_mem_info.RegionSize && x < 0x10; x++) 
+//    {
+//      std::cout << m_buffer.get()[i+x] << " ";
+//    }
+//
+//    std::cout << std::endl;
+//  }
+//}
 
 void mem_page::print_info()
 {
@@ -194,3 +195,67 @@ std::vector<uint32_t> mem_page::search_page(SIZE_T buff_len, uint8_t *buff)
   return results_vec;
 }
 
+
+void mem_page::save_page()
+{
+  std::ostringstream sstr;
+  sstr << "mem_dump/mem_page_" << CONFIGURE_HEX << m_mem_info.BaseAddress << CONFIGURE_DEC << ".bin"; // build file name
+
+  std::string file_path(sstr.str());
+  std::ofstream file(file_path.c_str(), std::ios::trunc | std::ios::binary);
+
+  file.write(reinterpret_cast<char*>(m_buffer.get()), m_mem_info.RegionSize);
+}
+
+void mem_page::load_page(std::string file_path)
+{
+  std::ifstream mem_file(file_path.c_str(), std::ifstream::binary);
+
+  if (mem_file) 
+  {
+    // get length of file:
+    mem_file.seekg (0, mem_file.end);
+
+    m_mem_info.RegionSize = mem_file.tellg();
+    mem_file.seekg (0, mem_file.beg);
+
+    char * buffer = new char [m_mem_info.RegionSize];
+
+    std::cout << "Reading " << m_mem_info.RegionSize << " characters... ";
+
+    // read data as a block:
+    mem_file.read (buffer,m_mem_info.RegionSize);
+
+    if (mem_file)
+      std::cout << "all characters read successfully.";
+    else
+      std::cout << "error: only " << mem_file.gcount() << " could be read";
+    mem_file.close();
+
+    delete[] buffer;
+  }
+  else
+  {
+    std::cout << "Fail to read " << file_path << std::endl;
+  }
+}
+
+void mem_page::print()
+{
+  std::cout << "0x" << CONFIGURE_HEX << m_mem_info.BaseAddress << std::endl;
+  for (SIZE_T x = 0; x < 0x10; x++)
+  {
+    std::cout << CONFIGURE_HEX << std::setw(2) << x << CONFIGURE_DEC << " ";
+  }
+  std::cout << std::endl;
+
+  for (SIZE_T x = 0; x < m_mem_info.RegionSize; x+=0x10)
+  {
+    for (SIZE_T y = 0; (y < 0x10) && (x + y < m_mem_info.RegionSize); y++)
+    {
+      std::cout << CONFIGURE_HEX << std::setfill('0') << std::setw(2) << +uint8_t(m_buffer.get()[x+y]) << CONFIGURE_DEC << " ";
+    }
+    std::cout << std::endl;
+  }
+  std::cout << std::endl;
+}

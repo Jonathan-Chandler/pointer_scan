@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 // #include "debug.h"
 #include "utils.hpp"
@@ -11,6 +12,14 @@ Process_Mem::Process_Mem(Process_Info* const proc_info)
   : m_proc_info(proc_info)
 {
   allocate_pages();
+  //refresh_pages();
+}
+
+Process_Mem::Process_Mem(std::string directory)
+  : m_proc_info(nullptr),
+    m_page_dir(directory)
+{
+  load_pages();
   //refresh_pages();
 }
 
@@ -156,6 +165,29 @@ std::vector<uint32_t> Process_Mem::search_pages(SIZE_T buff_len, uint8_t *buff)
   }
 
   return result_vec;
+}
+
+void Process_Mem::save_pages()
+{
+  for (auto it = m_mem_page_vec.begin(); it != m_mem_page_vec.end(); ++it)
+  {
+    (*it)->save_page();
+  }
+}
+
+void Process_Mem::load_pages()
+{
+// mem_page::mem_page(PVOID BaseAddress, std::string file_path)
+  std::string path = "mem_dump";
+  std::cout << "test dir: " << std::endl;
+  for (const auto & entry : std::filesystem::directory_iterator(path))
+  {
+    mem_page *temp_page;
+    std::cout << entry.path() << std::endl;
+    temp_page = new mem_page(nullptr, entry.path().string());
+    temp_page->print();
+    m_mem_page_vec.push_back(temp_page);
+  }
 }
 
 //int32_t Process_Mem::get_page_and_buffer(uint32_t request_addr, mem_page **return_page, uint8_t **return_buffer)

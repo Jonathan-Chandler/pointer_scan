@@ -16,6 +16,23 @@
 uint32_t addr1 = 0x21BD5E10;
 uint32_t addr2 = 0x21CD1410;
 
+int load_file()
+{
+  Process_Mem *proc_mem;
+
+  try
+  {
+    proc_mem = new Process_Mem(std::string("mem_dump"));
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Error getting process mem: " << e.what() << std::endl;
+  }
+
+  delete proc_mem;
+  return 0;
+}
+
 int main(int argc, char *argv[])
 {
   Process_Info *proc_info;
@@ -27,8 +44,8 @@ int main(int argc, char *argv[])
 
   if (argc == 1)
   {
-    printf("Expected process name: %s <process_name>", argv[0]);
-    exit(-1);
+    // printf("Expected process name: %s <process_name>", argv[0]);
+    return load_file();
   }
 
   proc_info = new Process_Info(argv[1]);
@@ -59,6 +76,7 @@ int main(int argc, char *argv[])
   near_search->start_search();
   near_search->print_search_results();
   near_search->print_least_distance();
+
 
   delete near_search;
   delete proc_mem;
