@@ -47,9 +47,6 @@ void Process_Mem::allocate_pages()
   MEMORY_BASIC_INFORMATION mem_info;
   mem_page *temp_page;
   unsigned char *addr = 0;
-#if 0
-  mem_page *largest_mem_page = NULL;  // test
-#endif
 
   while (true)
   {
@@ -84,21 +81,7 @@ void Process_Mem::allocate_pages()
 
     // add new page to list of pages
     m_mem_page_vec.push_back(temp_page);
-
-#if 0
-    // test
-    if (largest_mem_page == NULL)
-      largest_mem_page = m_mem_page_vec.back();
-
-    if (mem_info.RegionSize > largest_mem_page->get_len())
-      largest_mem_page = m_mem_page_vec.back();
-#endif
   }
-#if 0
-  // test
-  std::cout << "DBG - largest page: " << largest_mem_page->get_len() << std::endl;
-  std::cout << "DBG - largest page addr: 0x" << CONFIGURE_HEX << largest_mem_page->get_base() << CONFIGURE_DEC << std::endl;
-#endif
 }
 
 void Process_Mem::deallocate_pages()
@@ -169,23 +152,32 @@ std::vector<uint32_t> Process_Mem::search_pages(SIZE_T buff_len, uint8_t *buff)
 
 void Process_Mem::save_pages()
 {
+  std::cout << "Saving pages" << std::endl;
+
   for (auto it = m_mem_page_vec.begin(); it != m_mem_page_vec.end(); ++it)
   {
     (*it)->save_page();
   }
+
+  std::cout << "Saved pages" << std::endl;
 }
 
 void Process_Mem::load_pages()
 {
-// mem_page::mem_page(PVOID BaseAddress, std::string file_path)
   std::string path = "mem_dump";
-  std::cout << "test dir: " << std::endl;
+
   for (const auto & entry : std::filesystem::directory_iterator(path))
   {
     mem_page *temp_page;
-    std::cout << entry.path() << std::endl;
-    temp_page = new mem_page(nullptr, entry.path().string());
-    temp_page->print();
+    std::string file_str(entry.path().string());
+    std::string addr_str(file_str.substr(file_str.length()-12, 8)); 
+    uint32_t base_addr = stoi(addr_str, 0, 16);
+
+    std::cout << "Addr " << CONFIGURE_HEX << base_addr << CONFIGURE_DEC << std::endl;
+    std::cout << "Loading " << entry.path() << std::endl;
+
+    temp_page = new mem_page(reinterpret_cast<PVOID>(base_addr), file_str);
+
     m_mem_page_vec.push_back(temp_page);
   }
 }

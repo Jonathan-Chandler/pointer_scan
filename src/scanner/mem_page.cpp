@@ -199,45 +199,62 @@ std::vector<uint32_t> mem_page::search_page(SIZE_T buff_len, uint8_t *buff)
 void mem_page::save_page()
 {
   std::ostringstream sstr;
-  sstr << "mem_dump/mem_page_" << CONFIGURE_HEX << m_mem_info.BaseAddress << CONFIGURE_DEC << ".bin"; // build file name
+
+  // build file path+name = ./mem_dump/mem_page_<32_bit_addr>.bin
+  sstr << "mem_dump/mem_page_" << std::setfill('0') << std::setw(8) << std::hex << std::uppercase << int(m_mem_info.BaseAddress) << ".bin"; 
 
   std::string file_path(sstr.str());
   std::ofstream file(file_path.c_str(), std::ios::trunc | std::ios::binary);
 
+  if (!file.is_open())
+  {
+    std::cout << "Fail to open " << sstr.str() << std::endl;
+    return;
+  }
+
   file.write(reinterpret_cast<char*>(m_buffer.get()), m_mem_info.RegionSize);
+
+  //if (file.rdstate() & std::ofstream::badbit)
+  if (file.fail())
+  {
+    std::cout << "Fail while writing " << sstr.str() << std::endl;
+  }
+
+  file.close();
 }
 
 void mem_page::load_page(std::string file_path)
 {
   std::ifstream mem_file(file_path.c_str(), std::ifstream::binary);
 
-  if (mem_file) 
-  {
-    // get length of file:
-    mem_file.seekg (0, mem_file.end);
+  // file should end with <32_bit_addr>.bin - addr must be 8 characters
+  std::string addr_str(file_path.substr(file_path.length()-12, file_path.length()-4)); 
+  std::cout << "Read addr " << addr_str << std::endl;
 
-    m_mem_info.RegionSize = mem_file.tellg();
-    mem_file.seekg (0, mem_file.beg);
-
-    char * buffer = new char [m_mem_info.RegionSize];
-
-    std::cout << "Reading " << m_mem_info.RegionSize << " characters... ";
-
-    // read data as a block:
-    mem_file.read (buffer,m_mem_info.RegionSize);
-
-    if (mem_file)
-      std::cout << "all characters read successfully.";
-    else
-      std::cout << "error: only " << mem_file.gcount() << " could be read";
-    mem_file.close();
-
-    delete[] buffer;
-  }
-  else
+  if (!mem_file.is_open()) 
   {
     std::cout << "Fail to read " << file_path << std::endl;
   }
+
+  // get length of file:
+  mem_file.seekg (0, mem_file.end);
+
+  m_mem_info.RegionSize = mem_file.tellg();
+  mem_file.seekg (0, mem_file.beg);
+  m_buffer = std::unique_ptr<uint8_t>(new uint8_t[m_mem_info.RegionSize]());
+  if (m_buffer == nullptr)
+  {
+    std::cout << "Fail to allocate " << m_mem_info.RegionSize << " bytes" << std::endl;
+  }
+
+  // read data as a block:
+  mem_file.read(reinterpret_cast<char*>(m_buffer.get()),m_mem_info.RegionSize);
+
+  if (mem_file.fail())
+    std::cout << "Fail reading file " << file_path << std::endl;
+  //std::cout << "Error reading only " << mem_file.gcount() << " could be read";
+
+  mem_file.close();
 }
 
 void mem_page::print()

@@ -1,0 +1,124 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Addr_Dist	.\inc\scanner\search_nearby.hpp	/^        Addr_Dist(int32_t diff, uint32_t avg):addr_diff(diff),avg_addr(avg){};$/;"	f	struct:Search_Nearby::Addr_Dist
+Addr_Dist	.\inc\scanner\search_nearby.hpp	/^    struct Addr_Dist$/;"	s	class:Search_Nearby
+CONFIGURE_DEC	.\inc\scanner\utils.hpp	6;"	d
+CONFIGURE_HEX	.\inc\scanner\utils.hpp	5;"	d
+DEBUG_PRINT_FILE_LINE	.\inc\scanner\utils.hpp	8;"	d
+DEBUG_PRINT_LOG	.\inc\scanner\utils.hpp	12;"	d
+MEMINFO_PROTECT_IS_EXECUTABLE	.\inc\scanner\mem_page.hpp	11;"	d
+MEMINFO_PROTECT_IS_READABLE	.\inc\scanner\mem_page.hpp	10;"	d
+MEMINFO_PROTECT_IS_WRITABLE	.\inc\scanner\mem_page.hpp	9;"	d
+Process_Info	.\inc\scanner\process_info.hpp	/^    Process_Info(){};$/;"	f	class:Process_Info
+Process_Info	.\inc\scanner\process_info.hpp	/^    Process_Info(const Process_Info& rhs){};$/;"	f	class:Process_Info
+Process_Info	.\inc\scanner\process_info.hpp	/^class Process_Info$/;"	c
+Process_Info	.\src\scanner\process_info.cpp	/^Process_Info::Process_Info(const char *window_title)$/;"	f	class:Process_Info
+Process_Info	.\src\scanner\process_info.cpp	/^Process_Info::Process_Info(const char *window_title, const char *executable_title)$/;"	f	class:Process_Info
+Process_Mem	.\inc\scanner\process_mem.hpp	/^    Process_Mem():m_proc_info(NULL){};$/;"	f	class:Process_Mem
+Process_Mem	.\inc\scanner\process_mem.hpp	/^    Process_Mem(const Process_Info& rhs):m_proc_info(NULL){};$/;"	f	class:Process_Mem
+Process_Mem	.\inc\scanner\process_mem.hpp	/^class Process_Mem$/;"	c
+Process_Mem	.\src\scanner\process_mem.cpp	/^Process_Mem::Process_Mem(Process_Info* const proc_info)$/;"	f	class:Process_Mem
+Process_Mem	.\src\scanner\process_mem.cpp	/^Process_Mem::Process_Mem(std::string directory)$/;"	f	class:Process_Mem
+READ_PROCESS_MEMORY_SZ	.\src\scanner\mem_page.cpp	12;"	d	file:
+Search_Nearby	.\inc\scanner\search_nearby.hpp	/^class Search_Nearby$/;"	c
+Search_Nearby	.\src\scanner\search_nearby.cpp	/^Search_Nearby::Search_Nearby(Process_Mem *mem, std::vector<uint32_t> searched_values)$/;"	f	class:Search_Nearby
+__MEM_PAGE_HPP__	.\inc\scanner\mem_page.hpp	2;"	d
+__PROCESS_INFO_HPP__	.\inc\scanner\process_info.hpp	2;"	d
+__PROCESS_MEM_HPP__	.\inc\scanner\process_mem.hpp	2;"	d
+__SACRIFICE_HPP__	.\inc\scanner\sacrifice.hpp	2;"	d
+__SEARCH_NEARBY_HPP__	.\inc\scanner\search_nearby.hpp	2;"	d
+__TEST_SEARCH_NEARBY_HPP__	.\inc\test\test_search_nearby.hpp	2;"	d
+__UTILS_HPP__	.\inc\scanner\utils.hpp	2;"	d
+addr1	.\src\scanner\main.cpp	/^uint32_t addr1 = 0x21BD5E10;$/;"	v
+addr2	.\src\scanner\main.cpp	/^uint32_t addr2 = 0x21CD1410;$/;"	v
+addr_diff	.\inc\scanner\search_nearby.hpp	/^        int32_t addr_diff;$/;"	m	struct:Search_Nearby::Addr_Dist
+allocate_pages	.\src\scanner\process_mem.cpp	/^void Process_Mem::allocate_pages()$/;"	f	class:Process_Mem
+avg_addr	.\inc\scanner\search_nearby.hpp	/^        uint32_t avg_addr;$/;"	m	struct:Search_Nearby::Addr_Dist
+build_failed	.\make.bat	/^:build_failed$/;"	l
+close_process_handle	.\src\scanner\process_info.cpp	/^void Process_Info::close_process_handle()$/;"	f	class:Process_Info
+copy_page	.\src\scanner\mem_page.cpp	/^int mem_page::copy_page()$/;"	f	class:mem_page
+creature_list	.\inc\scanner\sacrifice.hpp	/^  const uint32_t creature_list = 0xDD5D0;$/;"	m	namespace:sacrifice_offsets
+deallocate_pages	.\src\scanner\process_mem.cpp	/^void Process_Mem::deallocate_pages()$/;"	f	class:Process_Mem
+debug_mode	.\inc\scanner\process_info.hpp	/^    const bool debug_mode = false;$/;"	m	class:Process_Info
+debug_print_last_win_error	.\src\scanner\utils.cpp	/^void debug_print_last_win_error()$/;"	f
+exit_make	.\make.bat	/^:exit_make$/;"	l
+find_process_base_addr	.\src\scanner\process_info.cpp	/^void Process_Info::find_process_base_addr()$/;"	f	class:Process_Info
+find_process_id	.\src\scanner\process_info.cpp	/^void Process_Info::find_process_id()$/;"	f	class:Process_Info
+find_window_handle	.\src\scanner\process_info.cpp	/^void Process_Info::find_window_handle()$/;"	f	class:Process_Info
+get_base_addr	.\src\scanner\mem_page.cpp	/^PVOID mem_page::get_base_addr()$/;"	f	class:mem_page
+get_base_addr	.\src\scanner\process_mem.cpp	/^uint32_t Process_Mem::get_base_addr()$/;"	f	class:Process_Mem
+get_buffer	.\src\scanner\mem_page.cpp	/^uint8_t* mem_page::get_buffer()$/;"	f	class:mem_page
+get_buffer	.\src\scanner\mem_page.cpp	/^uint8_t* mem_page::get_buffer(uint32_t offset)$/;"	f	class:mem_page
+get_executable_name	.\src\scanner\process_info.cpp	/^const std::string Process_Info::get_executable_name()$/;"	f	class:Process_Info
+get_least_distance	.\src\scanner\search_nearby.cpp	/^std::vector<Search_Nearby::Addr_Dist*> Search_Nearby::get_least_distance(std::vector<Search_Nearby::Addr_Dist*> list_1, std::vector<Search_Nearby::Addr_Dist*> list_2)$/;"	f	class:Search_Nearby
+get_len	.\src\scanner\mem_page.cpp	/^uint32_t mem_page::get_len()$/;"	f	class:mem_page
+get_page_buffer	.\src\scanner\process_mem.cpp	/^uint8_t* Process_Mem::get_page_buffer(uint32_t addr)$/;"	f	class:Process_Mem
+get_process_base_addr	.\src\scanner\process_info.cpp	/^DWORD Process_Info::get_process_base_addr()$/;"	f	class:Process_Info
+get_process_handle	.\src\scanner\process_info.cpp	/^HANDLE Process_Info::get_process_handle()$/;"	f	class:Process_Info
+get_process_id	.\src\scanner\process_info.cpp	/^DWORD Process_Info::get_process_id()$/;"	f	class:Process_Info
+get_process_info	.\inc\scanner\mem_page.hpp	/^    Process_Info* const get_process_info(){return m_proc_info;};$/;"	f	class:mem_page
+get_window_handle	.\src\scanner\process_info.cpp	/^HWND Process_Info::get_window_handle()$/;"	f	class:Process_Info
+get_window_title	.\src\scanner\process_info.cpp	/^const std::string Process_Info::get_window_title()$/;"	f	class:Process_Info
+initialize	.\src\scanner\mem_page.cpp	/^int mem_page::initialize()$/;"	f	class:mem_page
+initialize	.\src\scanner\process_info.cpp	/^void Process_Info::initialize()$/;"	f	class:Process_Info
+load_file	.\src\scanner\main.cpp	/^int load_file()$/;"	f
+load_page	.\src\scanner\mem_page.cpp	/^void mem_page::load_page(std::string file_path)$/;"	f	class:mem_page
+load_pages	.\src\scanner\process_mem.cpp	/^void Process_Mem::load_pages()$/;"	f	class:Process_Mem
+m_buffer	.\inc\scanner\mem_page.hpp	/^    std::unique_ptr<uint8_t> m_buffer;$/;"	m	class:mem_page
+m_converted_search	.\inc\scanner\search_nearby.hpp	/^    std::vector<std::vector<Addr_Dist*>> m_converted_search;$/;"	m	class:Search_Nearby
+m_executable_name	.\inc\scanner\process_info.hpp	/^    const std::string m_executable_name;$/;"	m	class:Process_Info
+m_mem_info	.\inc\scanner\mem_page.hpp	/^    MEMORY_BASIC_INFORMATION m_mem_info;  \/\/ memory page information$/;"	m	class:mem_page
+m_mem_page_vec	.\inc\scanner\process_mem.hpp	/^    std::vector<mem_page*> m_mem_page_vec;$/;"	m	class:Process_Mem
+m_page_dir	.\inc\scanner\process_mem.hpp	/^    std::string m_page_dir;                   \/\/ dir to save\/load memory pages$/;"	m	class:Process_Mem
+m_proc_info	.\inc\scanner\mem_page.hpp	/^    Process_Info* const m_proc_info;      \/\/ process id$/;"	m	class:mem_page
+m_proc_info	.\inc\scanner\process_mem.hpp	/^    Process_Info* const m_proc_info;$/;"	m	class:Process_Mem
+m_proc_mem	.\inc\scanner\search_nearby.hpp	/^    Process_Mem *m_proc_mem;$/;"	m	class:Search_Nearby
+m_process_base_addr	.\inc\scanner\process_info.hpp	/^    DWORD m_process_base_addr;$/;"	m	class:Process_Info
+m_process_handle	.\inc\scanner\process_info.hpp	/^    HANDLE m_process_handle;$/;"	m	class:Process_Info
+m_process_id	.\inc\scanner\process_info.hpp	/^    DWORD m_process_id;$/;"	m	class:Process_Info
+m_results	.\inc\scanner\search_nearby.hpp	/^    std::vector<std::vector<Addr_Dist*>> m_results;$/;"	m	class:Search_Nearby
+m_search_values	.\inc\scanner\search_nearby.hpp	/^    std::vector<uint32_t> m_search_values;$/;"	m	class:Search_Nearby
+m_window_handle	.\inc\scanner\process_info.hpp	/^    HWND m_window_handle;$/;"	m	class:Process_Info
+m_window_title	.\inc\scanner\process_info.hpp	/^    const std::string m_window_title;$/;"	m	class:Process_Info
+main	.\src\scanner\main.cpp	/^int main(int argc, char *argv[])$/;"	f
+main	.\src\test\test_main.cpp	/^int main(int argc, char *argv[])$/;"	f
+mem_page	.\inc\scanner\mem_page.hpp	/^    mem_page(): m_proc_info(nullptr){};$/;"	f	class:mem_page
+mem_page	.\inc\scanner\mem_page.hpp	/^    mem_page(const mem_page& rhs): m_proc_info(nullptr){};$/;"	f	class:mem_page
+mem_page	.\inc\scanner\mem_page.hpp	/^class mem_page$/;"	c
+mem_page	.\src\scanner\mem_page.cpp	/^mem_page::mem_page(PVOID BaseAddress, std::string file_path)$/;"	f	class:mem_page
+mem_page	.\src\scanner\mem_page.cpp	/^mem_page::mem_page(Process_Info *process_info, MEMORY_BASIC_INFORMATION *p_mem_info)$/;"	f	class:mem_page
+next_entity	.\inc\scanner\sacrifice.hpp	/^  const uint32_t next_entity = 0x3cc;$/;"	m	namespace:sacrifice_offsets
+open_process_handle	.\src\scanner\process_info.cpp	/^void Process_Info::open_process_handle()$/;"	f	class:Process_Info
+operator <	.\inc\scanner\search_nearby.hpp	/^        bool operator <(const Addr_Dist& rhs) const {return addr_diff < rhs.addr_diff;};$/;"	f	struct:Search_Nearby::Addr_Dist
+owning_wizard	.\inc\scanner\sacrifice.hpp	/^  const uint32_t owning_wizard = 0x1C4;$/;"	m	namespace:sacrifice_offsets
+print	.\src\scanner\mem_page.cpp	/^void mem_page::print()$/;"	f	class:mem_page
+print	.\src\scanner\process_info.cpp	/^void Process_Info::print()$/;"	f	class:Process_Info
+print	.\src\scanner\process_mem.cpp	/^void Process_Mem::print()$/;"	f	class:Process_Mem
+print_info	.\src\scanner\mem_page.cpp	/^void mem_page::print_info()$/;"	f	class:mem_page
+print_least_distance	.\src\scanner\search_nearby.cpp	/^void Search_Nearby::print_least_distance()$/;"	f	class:Search_Nearby
+print_results	.\src\scanner\search_nearby.cpp	/^void Search_Nearby::print_results()$/;"	f	class:Search_Nearby
+print_search_results	.\src\scanner\search_nearby.cpp	/^void Search_Nearby::print_search_results()$/;"	f	class:Search_Nearby
+refresh_page	.\src\scanner\mem_page.cpp	/^int mem_page::refresh_page()$/;"	f	class:mem_page
+refresh_pages	.\src\scanner\process_mem.cpp	/^void Process_Mem::refresh_pages()$/;"	f	class:Process_Mem
+sacrifice_offsets	.\inc\scanner\sacrifice.hpp	/^namespace sacrifice_offsets$/;"	n
+save_page	.\src\scanner\mem_page.cpp	/^void mem_page::save_page()$/;"	f	class:mem_page
+save_pages	.\src\scanner\process_mem.cpp	/^void Process_Mem::save_pages()$/;"	f	class:Process_Mem
+search_page	.\src\scanner\mem_page.cpp	/^std::vector<uint32_t> mem_page::search_page(SIZE_T buff_len, uint8_t *buff)$/;"	f	class:mem_page
+search_pages	.\src\scanner\process_mem.cpp	/^std::vector<uint32_t> Process_Mem::search_pages(SIZE_T buff_len, uint8_t *buff)$/;"	f	class:Process_Mem
+start_search	.\src\scanner\search_nearby.cpp	/^int Search_Nearby::start_search()$/;"	f	class:Search_Nearby
+structure_list	.\inc\scanner\sacrifice.hpp	/^  const uint32_t structure_list = 0xDD5D8;$/;"	m	namespace:sacrifice_offsets
+this_addr	.\inc\scanner\sacrifice.hpp	/^  const uint32_t this_addr = 0x18;$/;"	m	namespace:sacrifice_offsets
+unit_test_failed	.\make.bat	/^:unit_test_failed$/;"	l
+wizard_list	.\inc\scanner\sacrifice.hpp	/^  const uint32_t wizard_list = 0xDD5D4;$/;"	m	namespace:sacrifice_offsets
+wizard_name	.\inc\scanner\sacrifice.hpp	/^  const uint32_t wizard_name = 0x1440;$/;"	m	namespace:sacrifice_offsets
+x	.\inc\scanner\sacrifice.hpp	/^  const uint32_t x = 0x1B8;$/;"	m	namespace:sacrifice_offsets
+y	.\inc\scanner\sacrifice.hpp	/^  const uint32_t y = 0x1BC;$/;"	m	namespace:sacrifice_offsets
+z	.\inc\scanner\sacrifice.hpp	/^  const uint32_t z = 0x1C0;$/;"	m	namespace:sacrifice_offsets
+~Process_Info	.\src\scanner\process_info.cpp	/^Process_Info::~Process_Info()$/;"	f	class:Process_Info
+~Process_Mem	.\src\scanner\process_mem.cpp	/^Process_Mem::~Process_Mem()$/;"	f	class:Process_Mem
+~Search_Nearby	.\src\scanner\search_nearby.cpp	/^Search_Nearby::~Search_Nearby()$/;"	f	class:Search_Nearby
+~mem_page	.\src\scanner\mem_page.cpp	/^mem_page::~mem_page()$/;"	f	class:mem_page

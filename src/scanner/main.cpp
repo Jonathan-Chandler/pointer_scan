@@ -37,14 +37,14 @@ int main(int argc, char *argv[])
 {
   Process_Info *proc_info;
   Process_Mem *proc_mem;
-  Search_Nearby *near_search;
+  //Search_Nearby *near_search;
   // uint32_t value = 0x21D3A3C8;
   // SIZE_T buf_len = sizeof(value);
-  std::vector<uint32_t> search_vector;
+  //std::vector<uint32_t> search_vector;
 
+  // load from saved memory dump
   if (argc == 1)
   {
-    // printf("Expected process name: %s <process_name>", argv[0]);
     return load_file();
   }
 
@@ -69,6 +69,9 @@ int main(int argc, char *argv[])
     std::cerr << "Error getting process mem: " << e.what() << std::endl;
   }
 
+  proc_mem->save_pages();
+
+#if 0
   search_vector.push_back(addr1);
   search_vector.push_back(addr2);
 
@@ -79,6 +82,8 @@ int main(int argc, char *argv[])
 
 
   delete near_search;
+#endif
+
   delete proc_mem;
   delete proc_info;
 
